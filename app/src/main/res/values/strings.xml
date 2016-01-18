@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">finalProjectApp1</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="facebook">facebook</string>
+    <string name="action_wishlist">whislist</string>
+    <string name="hintCity">Type a city</string>
+    <string name="searchLabel">Get restaurant details of a city </string>
+</resources>
