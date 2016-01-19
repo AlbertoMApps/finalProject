@@ -1,18 +1,24 @@
 
-package com.example.tae_user0.finalprojectapp1.Model.api2;
-
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+package com.example.tae_user0.finalprojectapp1.Model.api3;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-public class Restaurant_ {
+public class RestaurantDetails {
 
-
+    @SerializedName("R")
+    @Expose
     private com.example.tae_user0.finalprojectapp1.R R;
+    @SerializedName("apikey")
+    @Expose
     private String apikey;
+    @SerializedName("id")
+    @Expose
     private String id;
+    @SerializedName("name")
+    @Expose
     private String name;
     @SerializedName("url")
     @Expose
@@ -62,9 +68,6 @@ public class Restaurant_ {
     @SerializedName("events_url")
     @Expose
     private String eventsUrl;
-    @SerializedName("establishment_types")
-    @Expose
-    private List<Object> establishmentTypes = new ArrayList<Object>();
 
     /**
      * 
@@ -424,24 +427,6 @@ public class Restaurant_ {
      */
     public void setEventsUrl(String eventsUrl) {
         this.eventsUrl = eventsUrl;
-    }
-
-    /**
-     * 
-     * @return
-     *     The establishmentTypes
-     */
-    public List<Object> getEstablishmentTypes() {
-        return establishmentTypes;
-    }
-
-    /**
-     * 
-     * @param establishmentTypes
-     *     The establishment_types
-     */
-    public void setEstablishmentTypes(List<Object> establishmentTypes) {
-        this.establishmentTypes = establishmentTypes;
     }
 
 }

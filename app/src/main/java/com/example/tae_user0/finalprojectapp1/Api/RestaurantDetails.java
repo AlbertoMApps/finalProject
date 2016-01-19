@@ -8,10 +8,11 @@ import retrofit.http.Headers;
 import retrofit.http.Query;
 
 /**
- * Created by TAE_user0 on 15/01/2016.
+ * Created by TAE_user0 on 19/01/2016.
  */
-public interface RestaurantsApi {
+public interface RestaurantDetails {
     @Headers("user_key:99cd7c305d8c477c5751a32d4d28f62d")
-    @GET("/api/v2.1/search?entity_type=city&cuisines=Spanish")
-    public void getSpanishRestaurants(@Query("&entity_id") int cityID, Callback<SpanishRestaurantModel> response);
+    @GET("/api/v2.1/restaurant?")
+    public void getSpanishRestaurantDetails(@Query("res_id") int resID, Callback<RestaurantDetails> response);
 }
+

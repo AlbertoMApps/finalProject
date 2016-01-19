@@ -1,6 +1,6 @@
-package com.example.tae_user0.finalprojectapp1.api;
+package com.example.tae_user0.finalprojectapp1.Api;
 
-import com.example.tae_user0.finalprojectapp1.model.api1.CitiesModel;
+import com.example.tae_user0.finalprojectapp1.Model.api1.CitiesModel;
 
 import retrofit.Callback;
 import retrofit.http.GET;

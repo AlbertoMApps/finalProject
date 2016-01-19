@@ -1,9 +1,7 @@
 package com.example.tae_user0.finalprojectapp1;
 
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -12,12 +10,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.example.tae_user0.finalprojectapp1.Fragments.FragmentSearch;
-import com.example.tae_user0.finalprojectapp1.api.onDataPass;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, onDataPass {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private  DrawerLayout drawerLayout;
     private FragmentSearch  fSearch;
     private String message;
@@ -26,20 +22,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+//toolbar options
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+//drawer options
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.setDrawerListener(toggle);
         toggle.syncState();
-
+//navigation options
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
     }
 
     @Override
@@ -81,9 +76,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
          fSearch = new FragmentSearch();
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-//first in the app we create the fragment to search the cities
+//First in the app we create the fragment to search the cities
         if (id == R.id.search) {
-            Toast.makeText(getApplicationContext(), "first",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), "first",Toast.LENGTH_SHORT).show();
             //first fragment to load the cities api1 depending on searching
             FragmentManager fragmentManager = getSupportFragmentManager();
             android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -104,16 +99,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    //Secondly, we click on btn Search
-    public void btnSearch (View v) {
-        Toast.makeText(getApplicationContext(),message ,Toast.LENGTH_SHORT).show();
-
-    }
-
-    @Override
-    public void onDataPass(String data) {
-        message = data;
     }
 }

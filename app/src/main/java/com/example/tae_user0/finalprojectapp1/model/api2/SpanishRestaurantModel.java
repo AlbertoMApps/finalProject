@@ -1,5 +1,5 @@
 
-package com.example.tae_user0.finalprojectapp1.model.api2;
+package com.example.tae_user0.finalprojectapp1.Model.api2;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

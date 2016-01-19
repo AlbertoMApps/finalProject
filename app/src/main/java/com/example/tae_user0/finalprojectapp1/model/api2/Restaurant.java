@@ -1,5 +1,5 @@
 
-package com.example.tae_user0.finalprojectapp1.model.api2;
+package com.example.tae_user0.finalprojectapp1.Model.api2;
 
 
 public class Restaurant {

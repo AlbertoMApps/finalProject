@@ -1,9 +1,13 @@
 
-package com.example.tae_user0.finalprojectapp1.Model.api2;
+package com.example.tae_user0.finalprojectapp1.Model.api3;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class R {
 
+    @SerializedName("res_id")
+    @Expose
     private Integer resId;
 
     /**
