@@ -1,13 +1,16 @@
 
 package com.example.tae_user0.finalprojectapp1.Model.api2;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpanishRestaurantModel {
+public class SpanishRestaurantModel implements Parcelable {
 
     @SerializedName("results_found")
     @Expose
@@ -21,6 +24,21 @@ public class SpanishRestaurantModel {
     @SerializedName("restaurants")
     @Expose
     private List<Restaurant> restaurants = new ArrayList<Restaurant>();
+
+    protected SpanishRestaurantModel(Parcel in) {
+    }
+
+    public static final Creator<SpanishRestaurantModel> CREATOR = new Creator<SpanishRestaurantModel>() {
+        @Override
+        public SpanishRestaurantModel createFromParcel(Parcel in) {
+            return new SpanishRestaurantModel(in);
+        }
+
+        @Override
+        public SpanishRestaurantModel[] newArray(int size) {
+            return new SpanishRestaurantModel[size];
+        }
+    };
 
     /**
      * 
@@ -94,4 +112,12 @@ public class SpanishRestaurantModel {
         this.restaurants = restaurants;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+    }
 }

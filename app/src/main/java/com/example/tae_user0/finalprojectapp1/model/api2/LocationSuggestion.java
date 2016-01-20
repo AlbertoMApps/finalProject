@@ -1,10 +1,13 @@
 
 package com.example.tae_user0.finalprojectapp1.Model.api2;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class LocationSuggestion {
+public class LocationSuggestion  implements Parcelable {
 
     @SerializedName("id")
     @Expose
@@ -33,6 +36,25 @@ public class LocationSuggestion {
     @SerializedName("state_code")
     @Expose
     private String stateCode;
+
+    protected LocationSuggestion(Parcel in) {
+        name = in.readString();
+        countryName = in.readString();
+        stateName = in.readString();
+        stateCode = in.readString();
+    }
+
+    public static final Creator<LocationSuggestion> CREATOR = new Creator<LocationSuggestion>() {
+        @Override
+        public LocationSuggestion createFromParcel(Parcel in) {
+            return new LocationSuggestion(in);
+        }
+
+        @Override
+        public LocationSuggestion[] newArray(int size) {
+            return new LocationSuggestion[size];
+        }
+    };
 
     /**
      * 
@@ -196,4 +218,16 @@ public class LocationSuggestion {
         this.stateCode = stateCode;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(countryName);
+        dest.writeString(stateName);
+        dest.writeString(stateCode);
+    }
 }

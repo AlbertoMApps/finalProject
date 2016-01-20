@@ -1,13 +1,16 @@
 
 package com.example.tae_user0.finalprojectapp1.Model.api2;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Restaurant_ {
+public class Restaurant_  implements Parcelable {
 
 
     private com.example.tae_user0.finalprojectapp1.R R;
@@ -65,6 +68,33 @@ public class Restaurant_ {
     @SerializedName("establishment_types")
     @Expose
     private List<Object> establishmentTypes = new ArrayList<Object>();
+
+    protected Restaurant_(Parcel in) {
+        apikey = in.readString();
+        id = in.readString();
+        name = in.readString();
+        url = in.readString();
+        cuisines = in.readString();
+        currency = in.readString();
+        thumb = in.readString();
+        photosUrl = in.readString();
+        menuUrl = in.readString();
+        featuredImage = in.readString();
+        deeplink = in.readString();
+        eventsUrl = in.readString();
+    }
+
+    public static final Creator<Restaurant_> CREATOR = new Creator<Restaurant_>() {
+        @Override
+        public Restaurant_ createFromParcel(Parcel in) {
+            return new Restaurant_(in);
+        }
+
+        @Override
+        public Restaurant_[] newArray(int size) {
+            return new Restaurant_[size];
+        }
+    };
 
     /**
      * 
@@ -444,4 +474,24 @@ public class Restaurant_ {
         this.establishmentTypes = establishmentTypes;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(apikey);
+        dest.writeString(id);
+        dest.writeString(name);
+        dest.writeString(url);
+        dest.writeString(cuisines);
+        dest.writeString(currency);
+        dest.writeString(thumb);
+        dest.writeString(photosUrl);
+        dest.writeString(menuUrl);
+        dest.writeString(featuredImage);
+        dest.writeString(deeplink);
+        dest.writeString(eventsUrl);
+    }
 }

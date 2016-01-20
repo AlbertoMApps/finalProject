@@ -74,7 +74,7 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder>{
             if (getAdapterPosition()!=-1) {
                 List<LocationSuggestion> loc = menu.getList().getLocationSuggestions();
                 int locId = loc.get(getAdapterPosition()).getId();
-                clickLocations.onClick(v, locId);
+                clickLocations.onClick(v,locId);
             }
         }
     }

@@ -4,8 +4,6 @@ package com.example.tae_user0.finalprojectapp1.Fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -24,6 +22,8 @@ import com.example.tae_user0.finalprojectapp1.Constants.Constant;
 import com.example.tae_user0.finalprojectapp1.Model.api1.CitiesModel;
 import com.example.tae_user0.finalprojectapp1.R;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
@@ -34,8 +34,8 @@ import retrofit.client.Response;
  */
 public class FragmentSearch extends Fragment implements View.OnClickListener, ItemClickListener{
 
-    private EditText searchText;
-    private Button btnSearch;
+    @Bind(R.id.txtSearch) EditText searchText;
+    @Bind(R.id.btnSearch) Button btnSearch;
     private RecyclerView mRecycler;
     private CityAdapter mAdapter;
     private RestAdapter restAdapt;
@@ -49,9 +49,11 @@ public class FragmentSearch extends Fragment implements View.OnClickListener, It
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        //Butterknife injections for different reusable id's
         View view = inflater.inflate(R.layout.fragment1, container, false);
-        searchText = (EditText) view.findViewById(R.id.txtSearch);
-        btnSearch = (Button) view.findViewById(R.id.btnSearch);
+        ButterKnife.bind(this, view);
+        //searchText = (EditText) view.findViewById(R.id.txtSearch);
+//        btnSearch = (Button) view.findViewById(R.id.btnSearch);
         btnSearch.setOnClickListener(FragmentSearch.this);
 
         //restAdapter of the models

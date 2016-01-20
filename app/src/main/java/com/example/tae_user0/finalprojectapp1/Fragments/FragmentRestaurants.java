@@ -7,20 +7,17 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.tae_user0.finalprojectapp1.Adapters.CityAdapter;
 import com.example.tae_user0.finalprojectapp1.Adapters.RestaurantsAdapter;
 import com.example.tae_user0.finalprojectapp1.Api.ItemClickListener;
+import com.example.tae_user0.finalprojectapp1.Api.ItemClickListenerRestModel;
 import com.example.tae_user0.finalprojectapp1.Api.RestaurantsApi;
 import com.example.tae_user0.finalprojectapp1.Constants.Constant;
-import com.example.tae_user0.finalprojectapp1.Model.api1.CitiesModel;
 import com.example.tae_user0.finalprojectapp1.Model.api2.SpanishRestaurantModel;
 import com.example.tae_user0.finalprojectapp1.R;
 
@@ -32,13 +29,14 @@ import retrofit.client.Response;
 /**
  * Created by TAE_user0 on 19/01/2016.
  */
-public class FragmentRestaurants extends Fragment implements ItemClickListener{
+public class FragmentRestaurants extends Fragment implements ItemClickListenerRestModel{
     private static FragmentRestaurants fr;
     private RestAdapter restAdapt;
     private RestaurantsApi spRest;
     private RecyclerView mRecycler;
     private RestaurantsAdapter mAdapter;
-    private ItemClickListener clickListener;
+    private ItemClickListenerRestModel clickListener;
+    private SpanishRestaurantModel spModel;
     
     public FragmentRestaurants(){}
     public static FragmentRestaurants newInstance(Bundle args){
@@ -68,6 +66,8 @@ public class FragmentRestaurants extends Fragment implements ItemClickListener{
                 @Override
                 public void success(SpanishRestaurantModel spanishRestaurantModel, Response response) {
                     recyclerModel2(spanishRestaurantModel);
+                    spModel = spanishRestaurantModel;
+                    //getToast("votes"+spanishRestaurantModel.getRestaurants().get(0).getRestaurant().getUserRating().getVotes());
 //                    for (int i = 0; i < spanishRestaurantModel.getRestaurants().size(); i++) {
 //                        Log.i("locations by id", "" + spanishRestaurantModel.getRestaurants().get(i).getRestaurant().getName());
 //                        // Toast.makeText(getContext(), "Name restaurants,  fragment 2; " + spanishRestaurantModel.getRestaurants().get(i).getRestaurant().getName(), Toast.LENGTH_SHORT).show();
@@ -112,14 +112,20 @@ public class FragmentRestaurants extends Fragment implements ItemClickListener{
         mRecycler.setAdapter(mAdapter);
     }
 
+//Click functionality to send the id to the fragment3-> restaurant details fragment
+
     @Override
-    public void onClick(View view, int restId) {
-            getToast(""+restId);
+    public void onClickDetails(View view, int restId, int pos) {
+        //getToast(""+restId);
         Bundle arguments = new Bundle();
         arguments.putInt("restId", restId);
+        //Model from fragment Restaurants for the charging of some details, in case the 3rd Api is not working...Had a problem before chargind it...
+        arguments.putParcelable("restModel", spModel);
+        arguments.putInt("restModelPos", pos);
         FragmentRestaurantDetails fDetails = FragmentRestaurantDetails.newInstance(arguments);
         android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.main_fragment, fDetails, "fragment3");
         fragmentTransaction.commit();
+
     }
 }

@@ -12,6 +12,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.tae_user0.finalprojectapp1.Fragments.FragmentSearch;
+import com.crashlytics.android.Crashlytics;
+import com.facebook.FacebookSdk;
+
+import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private  DrawerLayout drawerLayout;
@@ -21,6 +25,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//Facebook sdk integration
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
 //toolbar options
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

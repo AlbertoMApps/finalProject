@@ -1,6 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent">
 
-</LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/txtRestDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:text="@string/detailsLabel"
+            android:layout_margin="10dp"
+            />
+
+        <android.support.v4.view.ViewPager
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/pager"
+            android:layout_width="350dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/txtRestDetails"
+            />
+
+        <TextView
+            android:id="@+id/txtRestName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:text="Fill me"
+            android:layout_margin="10dp"
+            android:layout_below="@id/pager"
+            />
+        <TextView
+            android:id="@+id/txtAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="#000000"
+            android:text="Fill me"
+            android:layout_margin="10dp"
+            android:layout_below="@id/txtRestName"
+            />
+        <TextView
+            android:id="@+id/txtCity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="#000000"
+            android:text="Fill me"
+            android:layout_margin="10dp"
+            android:layout_below="@id/txtAddress"
+            />
+        <TextView
+            android:id="@+id/txtPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="#000000"
+            android:text="Fill me"
+            android:layout_margin="10dp"
+            android:layout_below="@id/txtCity"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="20dp"
+            android:background="@color/primary_dark"
+            android:layout_below="@id/txtPrice"
+            android:layout_alignParentBottom="true"
+            >
+            <TextView
+                android:id="@+id/btnAddBag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="#fff"
+                android:text="Add to favourites"
+                android:layout_gravity="center"
+                android:layout_marginLeft="50dp"
+                android:onClick="btnAdd"
+                android:clickable="true"
+                />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</ScrollView>

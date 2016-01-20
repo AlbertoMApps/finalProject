@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.tae_user0.finalprojectapp1.Api.ItemClickListener;
+import com.example.tae_user0.finalprojectapp1.Api.ItemClickListenerRestModel;
 import com.example.tae_user0.finalprojectapp1.Model.api1.CitiesModel;
 import com.example.tae_user0.finalprojectapp1.Model.api2.Restaurant;
 import com.example.tae_user0.finalprojectapp1.Model.api2.Restaurant_;
@@ -28,9 +29,9 @@ public class RestaurantsAdapter  extends RecyclerView.Adapter<RestaurantsAdapter
     private int rowLayout;
     private Context mContext;
     private LayoutInflater inflater;
-    private ItemClickListener clickRestaurant;
+    private ItemClickListenerRestModel clickRestaurant;
 
-    public RestaurantsAdapter(SpanishRestaurantModel model, int rowLayout, Context context, ItemClickListener clickRestaurant) {
+    public RestaurantsAdapter(SpanishRestaurantModel model, int rowLayout, Context context, ItemClickListenerRestModel clickRestaurant) {
         this.model = model;
         this.rowLayout = rowLayout;
         this.mContext = context;
@@ -54,7 +55,7 @@ public class RestaurantsAdapter  extends RecyclerView.Adapter<RestaurantsAdapter
         Picasso.with(mContext)
          .load(resta.getThumb().toString())
          .resize(200, 200)
-        //.placeholder(R.drawable.bt_loading)
+         .placeholder(R.drawable.bt_loading)
         //.error(R.drawable.bt_error)
         .centerCrop()
         .into(holder.imgBtn);
@@ -74,10 +75,10 @@ public class RestaurantsAdapter  extends RecyclerView.Adapter<RestaurantsAdapter
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private TextView txt1, txt2;
         private ImageView imgBtn;
-        private ItemClickListener clickRestaurants;
+        private ItemClickListenerRestModel clickRestaurants;
         private SpanishRestaurantModel menu;
 
-        public ViewHolder(View itemView, ItemClickListener itemClickListener, SpanishRestaurantModel spanishRestaurantModel) {
+        public ViewHolder(View itemView, ItemClickListenerRestModel itemClickListener, SpanishRestaurantModel spanishRestaurantModel) {
             super(itemView);
             //img = (ImageView) itemView.findViewById(R.id.img);
             txt1 = (TextView) itemView.findViewById(R.id.restNameText);
@@ -95,7 +96,7 @@ public class RestaurantsAdapter  extends RecyclerView.Adapter<RestaurantsAdapter
             if (getAdapterPosition()!=-1) {
                 List<Restaurant> loc = menu.getRestaurants();
                 String restId = loc.get(getAdapterPosition()).getRestaurant().getId();
-                clickRestaurants.onClick(v, Integer.parseInt(restId.toString()));
+                clickRestaurants.onClickDetails(v, Integer.parseInt(restId.toString()), getAdapterPosition());
             }
         }
     }
