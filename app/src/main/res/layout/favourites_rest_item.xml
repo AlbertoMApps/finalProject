@@ -10,36 +10,34 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:background="@color/bt_light_gray">
-        <ImageView
-            android:id="@+id/imageRest"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-           />
 
         <TextView
-            android:id="@+id/restNameText"
-            android:layout_width="fill_parent"
+            android:id="@+id/favNameText"
+            android:focusable="true"
+            android:clickable="true"
+            android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:textSize="18sp"
             android:textColor="#ffff"
             android:text="Fill me"
-            android:textAlignment="center"
             android:textAppearance="@color/primary_dark"
-            android:layout_below="@+id/imageRest"
+            android:textAlignment="center"
             android:layout_margin="5dp"
             />
         <TextView
-            android:id="@+id/restCousines"
-            android:layout_width="fill_parent"
+            android:id="@+id/favAddressText"
+            android:focusable="true"
+            android:clickable="true"
+            android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:textSize="14sp"
             android:textColor="#ffff"
             android:text="Fill me"
-            android:textAlignment="center"
             android:layout_margin="5dp"
-            android:layout_below="@+id/restNameText"
+            android:textAlignment="center"
+            android:layout_below="@+id/favNameText"
             />
+
 
     </RelativeLayout>
 </android.support.v7.widget.CardView>

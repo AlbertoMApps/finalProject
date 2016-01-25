@@ -1,0 +1,48 @@
+#
+# generated on 2016/01/21 08:15:47
+#
+# --table-start--
+dataClass=com.example.tae_user0.finalprojectapp1.dbModel.User
+tableName=user
+# --table-fields-start--
+# --field-start--
+fieldName=id
+columnName=id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=name
+columnName=name
+# --field-end--
+# --field-start--
+fieldName=email
+columnName=email
+# --field-end--
+# --field-start--
+fieldName=fav
+columnName=fav
+foreign=true
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.example.tae_user0.finalprojectapp1.dbModel.Favourites
+tableName=favourites
+# --table-fields-start--
+# --field-start--
+fieldName=id
+columnName=id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=restName
+columnName=restName
+# --field-end--
+# --field-start--
+fieldName=street
+columnName=street
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################

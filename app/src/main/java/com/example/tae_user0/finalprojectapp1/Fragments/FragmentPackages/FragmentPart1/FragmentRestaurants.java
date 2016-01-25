@@ -1,4 +1,4 @@
-package com.example.tae_user0.finalprojectapp1.Fragments;
+package com.example.tae_user0.finalprojectapp1.Fragments.FragmentPackages.FragmentPart1;
 
 
 import android.content.Context;
@@ -11,10 +11,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.tae_user0.finalprojectapp1.Adapters.RestaurantsAdapter;
-import com.example.tae_user0.finalprojectapp1.Api.ItemClickListener;
 import com.example.tae_user0.finalprojectapp1.Api.ItemClickListenerRestModel;
 import com.example.tae_user0.finalprojectapp1.Api.RestaurantsApi;
 import com.example.tae_user0.finalprojectapp1.Constants.Constant;
@@ -43,14 +43,19 @@ public class FragmentRestaurants extends Fragment implements ItemClickListenerRe
         fr = new FragmentRestaurants();
         fr.setArguments(args);
         return fr;
-
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment2, container, false);
-        Toast.makeText(getContext(), "cityId fragment 2; " + fr.getArguments().getInt("cityId"), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(), "cityId fragment 2; " + fr.getArguments().getInt("cityId"), Toast.LENGTH_SHORT).show();
+
+        //set the imageView for the main content invisible in any of the other fragments
+        ImageView im = (ImageView)getActivity().findViewById(R.id.imgLogo);
+        im.setVisibility(View.INVISIBLE);
+        im.getLayoutParams().height = 0;
+
         clickListener =  FragmentRestaurants.this;
         //restAdapter of the models
         restAdapt = new RestAdapter.Builder()

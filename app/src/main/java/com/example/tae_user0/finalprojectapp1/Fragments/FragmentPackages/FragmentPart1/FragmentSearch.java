@@ -1,6 +1,7 @@
-package com.example.tae_user0.finalprojectapp1.Fragments;
+package com.example.tae_user0.finalprojectapp1.Fragments.FragmentPackages.FragmentPart1;
 
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.tae_user0.finalprojectapp1.Adapters.CityAdapter;
@@ -55,6 +57,10 @@ public class FragmentSearch extends Fragment implements View.OnClickListener, It
         //searchText = (EditText) view.findViewById(R.id.txtSearch);
 //        btnSearch = (Button) view.findViewById(R.id.btnSearch);
         btnSearch.setOnClickListener(FragmentSearch.this);
+        //set the imageView for the main content invisible in any of the other fragments
+        ImageView im = (ImageView)getActivity().findViewById(R.id.imgLogo);
+        im.setVisibility(View.INVISIBLE);
+        im.getLayoutParams().height = 0;
 
         //restAdapter of the models
         restAdapt = new RestAdapter.Builder()
@@ -80,10 +86,10 @@ public class FragmentSearch extends Fragment implements View.OnClickListener, It
                 @Override
                 public void success(CitiesModel citiesModel, Response response) {
                     recyclerModel1(citiesModel);
-                    for (int i = 0; i < citiesModel.getLocationSuggestions().size(); i++) {
-                        Log.i("locations by id", ""+citiesModel.getLocationSuggestions().get(i).getId());
-                        //Toast.makeText(getContext(), citiesModel.getLocationSuggestions().get(i).getName(), Toast.LENGTH_SHORT).show();
-                    }
+//                    for (int i = 0; i < citiesModel.getLocationSuggestions().size(); i++) {
+//                        Log.i("locations by id", ""+citiesModel.getLocationSuggestions().get(i).getId());
+//                        //Toast.makeText(getContext(), citiesModel.getLocationSuggestions().get(i).getName(), Toast.LENGTH_SHORT).show();
+//                    }
                 }
 
                 @Override
@@ -113,12 +119,17 @@ public class FragmentSearch extends Fragment implements View.OnClickListener, It
 
     @Override
     public void onClick(View view, int cityId) {
-        Toast.makeText(getContext(), "city ID: "+cityId, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(), "city ID: "+cityId, Toast.LENGTH_SHORT).show();
         Bundle arguments = new Bundle();
         arguments.putInt("cityId", cityId);
         FragmentRestaurants fRest = FragmentRestaurants.newInstance(arguments);
         android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.main_fragment, fRest, "fragment2");
         fragmentTransaction.commit();
+    }
+    @Override
+    public void onDestroyView () {
+        super.onDestroyView();
+        Log.v("LOG", "onDestroyView");
     }
 }

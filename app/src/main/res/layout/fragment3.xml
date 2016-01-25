@@ -67,27 +67,26 @@
             android:layout_margin="10dp"
             android:layout_below="@id/txtCity"
             />
-        <RelativeLayout
+        <Button
+            android:id="@+id/btnFb"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="20dp"
-            android:background="@color/primary_dark"
+            android:layout_height="match_parent"
+            android:text="Add to Facebook"
             android:layout_below="@id/txtPrice"
-            android:layout_alignParentBottom="true"
-            >
-            <TextView
-                android:id="@+id/btnAddBag"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textColor="#fff"
-                android:text="Add to favourites"
-                android:layout_gravity="center"
-                android:layout_marginLeft="50dp"
-                android:onClick="btnAdd"
-                android:clickable="true"
-                />
-        </RelativeLayout>
+            android:background="@color/primary_dark"
+            android:textColor="#fff"
+            android:layout_margin="10dp"
+            />
+        <Button
+            android:id="@+id/btnAdd"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Add to Favourites"
+            android:layout_below="@id/btnFb"
+            android:background="@color/primary_dark"
+            android:textColor="#fff"
+            android:layout_margin="10dp"
+            />
 
     </RelativeLayout>
 

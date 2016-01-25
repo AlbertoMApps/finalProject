@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">finalProjectApp1</string>
+    <string name="action_settings">Configuraciones</string>
+    <string name="action_wishlist">carrito</string>
+    <string name="detailsLabel">detalles del restaurante</string>
+    <string name="email">email</string>
+    <string name="facebook">facebook</string>
+    <string name="facebook_app_id">54691734332</string>
+    <string name="hintCity">Teclea una ciudad</string>
+    <string name="navigation_drawer_close">Cierra elnavigation drawer</string>
+    <string name="navigation_drawer_open">Abre el navigation drawer</string>
+    <string name="restaurantsLabel">Resultados de restaurantes por ciudad</string>
+    <string name="search">Busca por ciudad</string>
+    <string name="searchLabel">Consigue restaurantes de una ciudad</string>
+    <string name="user">usuario</string>
+</resources>

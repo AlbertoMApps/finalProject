@@ -12,4 +12,7 @@
     <string name="searchLabel">Get restaurant details of a city </string>
     <string name="detailsLabel">Restaurant details</string>
     <string name="restaurantsLabel">Restaurants results by city</string>
+    <string name="user">user</string>
+    <string name="email">email</string>
+    <string name="search">search by city</string>
 </resources>

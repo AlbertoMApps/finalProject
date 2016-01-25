@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.TextInputLayout
+    android:id="@+id/input_layout_last"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/txtLabelLogin"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditText xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/searchfield"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:drawableLeft="@android:drawable/ic_search_category_default"
+        android:hint="@string/search" >
+        </EditText>
+</android.support.design.widget.TextInputLayout>
+

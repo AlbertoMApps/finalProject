@@ -4,6 +4,7 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/search"
+            android:icon="@android:drawable/ic_menu_search"
             android:title="Search by city" />
         <item
             android:id="@+id/maps"

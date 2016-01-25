@@ -83,7 +83,7 @@ public class RestaurantsAdapter  extends RecyclerView.Adapter<RestaurantsAdapter
             //img = (ImageView) itemView.findViewById(R.id.img);
             txt1 = (TextView) itemView.findViewById(R.id.restNameText);
             txt2 = (TextView) itemView.findViewById(R.id.restCousines);
-            imgBtn = (ImageView)itemView.findViewById(R.id.imageButton1);
+            imgBtn = (ImageView)itemView.findViewById(R.id.imageRest);
             itemView.setOnClickListener(this);
             this.clickRestaurants = itemClickListener;
             //get outer class

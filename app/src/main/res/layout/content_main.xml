@@ -12,11 +12,12 @@
     tools:context="com.example.tae_user0.finalprojectapp1.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-   <!-- <android.support.v7.widget.AppCompatImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+   <ImageView
+        android:layout_width="1000dp"
+        android:layout_height="500dp"
         android:layout_margin="100dp"
-        android:background="@android:drawable/btn_star"/>-->
+       android:id="@+id/imgLogo"
+        android:background="@drawable/logo_buen_provecho"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

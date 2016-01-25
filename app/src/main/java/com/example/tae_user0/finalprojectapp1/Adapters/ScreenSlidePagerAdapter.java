@@ -1,18 +1,12 @@
 package com.example.tae_user0.finalprojectapp1.Adapters;
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 
-import com.example.tae_user0.finalprojectapp1.Fragments.FragmentImages;
-import com.example.tae_user0.finalprojectapp1.Fragments.FragmentRestaurantDetails;
+import com.example.tae_user0.finalprojectapp1.Fragments.FragmentPackages.FragmentPart1.FragmentImages;
 import com.example.tae_user0.finalprojectapp1.Model.api2.SpanishRestaurantModel;
-import com.example.tae_user0.finalprojectapp1.Model.api3.RestaurantDetailsModel;
-import com.example.tae_user0.finalprojectapp1.R;
-
-import java.util.List;
 
 /**
  * Created by TAE_user0 on 05/01/2016.
