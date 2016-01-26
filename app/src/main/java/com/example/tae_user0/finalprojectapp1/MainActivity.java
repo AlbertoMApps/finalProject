@@ -39,8 +39,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private String message;
     private CallbackManager callbackManager;
     private ShareDialog shareDialog;
-    ProgressDialog progress;
+    //ProgressDialog progress;
+   // private ProgressDialog progressDialog;
     private User user;
+    private Intent i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 **/
         user = getIntent().getParcelableExtra("user");
         Log.i("getName", user.getName());
-        Intent i = new Intent(this, SaveDataService.class);
+        i = new Intent(this, SaveDataService.class);
         i.putExtra("user", user);
         startService(i);
 //        stopService(i);
@@ -102,6 +104,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+            finish();
         }
     }
 
@@ -169,8 +172,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_share) {
             setfacebookLogin();
 
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.log) {
+            stopService(i);
+            i = new Intent(this, LoginActivity.class);
+            //i.putExtra("close", user);
+            startActivity(i);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -209,6 +215,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         AppEventsLogger.deactivateApp(this);
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
     //@Override
 //    protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
 //        super.onActivityResult(requestCode, resultCode, data);
@@ -231,12 +242,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             shareDialog.show(linkContent);
         }
     }
+
     ///progress bar dialog
     public void loading (){
-        final ProgressDialog progressDialog = new ProgressDialog(MainActivity.this,
-                R.style.AppTheme);
+        final ProgressDialog progressDialog;
+        progressDialog = new ProgressDialog(MainActivity.this, R.style.AppTheme);
         progressDialog.setIndeterminate(false);
+        progressDialog.setCancelable(true);
         progressDialog.setMessage("Loading...");
         progressDialog.show();
+    }
+    public void dismissProgressDialog(){
+        final ProgressDialog progressDialog;
+        progressDialog = new ProgressDialog(MainActivity.this, R.style.AppTheme);
+        progressDialog.dismiss();
     }
 }

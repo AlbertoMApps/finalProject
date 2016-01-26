@@ -43,6 +43,7 @@ public class FragmentSearch extends Fragment implements View.OnClickListener, It
     private RestAdapter restAdapt;
     private CitiesApi spCities;
     private ItemClickListener cityClick;
+    private ProgressDialog progressDialog;
 
     public FragmentSearch() {
 
@@ -69,7 +70,6 @@ public class FragmentSearch extends Fragment implements View.OnClickListener, It
                 .build();
         //city Click
         cityClick = FragmentSearch.this;
-
         return view;
     }
     //Secondly, we click on btn Search
@@ -77,7 +77,6 @@ public class FragmentSearch extends Fragment implements View.OnClickListener, It
     public void onClick(final View v) {
         //Toast.makeText(getContext(), searchText.getText().toString(),Toast.LENGTH_SHORT).show();
         //restAdapter for cities API1//// //
-
         String q= searchText.getText().toString();
         spCities = restAdapt.create(CitiesApi.class);
         if(!q.isEmpty()) {
@@ -85,6 +84,7 @@ public class FragmentSearch extends Fragment implements View.OnClickListener, It
             spCities.getCities(q, new Callback<CitiesModel>() {
                 @Override
                 public void success(CitiesModel citiesModel, Response response) {
+                    dismissProgressDialog();
                     recyclerModel1(citiesModel);
 //                    for (int i = 0; i < citiesModel.getLocationSuggestions().size(); i++) {
 //                        Log.i("locations by id", ""+citiesModel.getLocationSuggestions().get(i).getId());
@@ -94,7 +94,6 @@ public class FragmentSearch extends Fragment implements View.OnClickListener, It
 
                 @Override
                 public void failure(RetrofitError error) {
-
                 }
             });
         } else{
@@ -122,8 +121,10 @@ public class FragmentSearch extends Fragment implements View.OnClickListener, It
         //Toast.makeText(getContext(), "city ID: "+cityId, Toast.LENGTH_SHORT).show();
         Bundle arguments = new Bundle();
         arguments.putInt("cityId", cityId);
+        //loading();
         FragmentRestaurants fRest = FragmentRestaurants.newInstance(arguments);
         android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        dismissProgressDialog();
         fragmentTransaction.replace(R.id.main_fragment, fRest, "fragment2");
         fragmentTransaction.commit();
     }
@@ -131,5 +132,18 @@ public class FragmentSearch extends Fragment implements View.OnClickListener, It
     public void onDestroyView () {
         super.onDestroyView();
         Log.v("LOG", "onDestroyView");
+    }
+
+    ///progress bar dialog
+    public void loading (){
+        progressDialog = new ProgressDialog(getContext(), R.style.AppTheme);
+        progressDialog.setIndeterminate(false);
+        progressDialog.setCancelable(true);
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
+    }
+    public void dismissProgressDialog(){
+        progressDialog = new ProgressDialog(getContext(), R.style.AppTheme);
+        progressDialog.dismiss();
     }
 }

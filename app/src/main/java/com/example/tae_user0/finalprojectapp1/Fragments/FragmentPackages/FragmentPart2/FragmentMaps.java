@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,28 +40,33 @@ import retrofit.client.Response;
 /**
  * Created by TAE_user0 on 25/01/2016.
  */
-public class FragmentMaps extends Fragment implements OnMapReadyCallback, AdapterView.OnItemSelectedListener{
+public class FragmentMaps extends Fragment implements OnMapReadyCallback{
     private RestAdapter restAdapt;
     private GoogleMap mMap;
     private RestaurantsApi spAllCities;
     private Spinner spinner;
     private String itemSpinner;
-    private int cityNumber;
+    private int [] cityNumbers = {61,68,65,290,295,283}; //maps for some cities like london, Manchester, Ottawa
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_maps, container, false);
+        //set the imageView for the main content invisible in any of the other fragments
+        ImageView im = (ImageView)getActivity().findViewById(R.id.imgLogo);
+        im.setVisibility(View.INVISIBLE);
+        im.getLayoutParams().height = 0;
         //mapview
         initilizeMap();
         //init the rest of the view elements here---
         TextView txtLabel = (TextView) v.findViewById(R.id.txtMaps);
-        spinner = (Spinner) v.findViewById(R.id.spinner);
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity().getApplicationContext(), R.array.citiesMaps, R.layout.support_simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
+        //spinner that we can implement later on for some places
+//        spinner = (Spinner) v.findViewById(R.id.spinner);
+//        // Create an ArrayAdapter using the string array and a default spinner layout
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity().getApplicationContext(), cityNumbers, R.layout.support_simple_spinner_dropdown_item);
+//        // Apply the adapter to the spinner
+//        spinner.setAdapter(adapter);
+//        spinner.setOnItemSelectedListener(this);
         //restAdapter of the models
         restAdapt = new RestAdapter.Builder()
                 .setEndpoint(Constant.BASE_URL)
@@ -73,35 +79,13 @@ public class FragmentMaps extends Fragment implements OnMapReadyCallback, Adapte
     @Override
     public void onMapReady(final GoogleMap googleMap) {
         mMap = googleMap;
+        spAllCities = restAdapt.create(RestaurantsApi.class);
+        //fillerMap
+        mapFiller();
+
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         //get retrofit options for the new api to get all the restaurants around
-        spAllCities = restAdapt.create(RestaurantsApi.class);
-        if (getCityNumber()!=0) {
-            spAllCities.getSpanishRestaurants(getCityNumber(), new Callback<SpanishRestaurantModel>() {
-                @Override
-                public void success(SpanishRestaurantModel spanishRestaurantModel, Response response) {
-                    List<Restaurant> restaurantsList = spanishRestaurantModel.getRestaurants();
-                    for (int i = 0; i < restaurantsList.size(); i++) {
-                        double lat = Double.parseDouble(restaurantsList.get(i).getRestaurant().getLocation().getLatitude());
-                        double lng = Double.parseDouble(restaurantsList.get(i).getRestaurant().getLocation().getLongitude());
-                        final LatLng place = new LatLng(lat, lng);
-                        MarkerOptions placeMarker = new MarkerOptions()
-                                .position(place)
-                                .title(restaurantsList.get(i).getRestaurant().getName())
-                                .snippet("Address: " + restaurantsList.get(i).getRestaurant().getLocation().getAddress());
-                        mMap.addMarker(placeMarker);
-                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(place, 12.5f));
-                    }
-                }
 
-                @Override
-                public void failure(RetrofitError error) {
-
-                }
-            });
-        } else {
-            this.cityNumber = 61;
-        }
         // Enable / Disable zooming controls
         mMap.getUiSettings().setZoomControlsEnabled(false);
 
@@ -145,14 +129,37 @@ public class FragmentMaps extends Fragment implements OnMapReadyCallback, Adapte
      * function to load map If map is not created it will create it for you
      * */
     private void initilizeMap() {
-        if (mMap == null) {
-            SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
-            mapFragment.getMapAsync(this);
-            // check if map is created successfully or not
-            if (mMap == null) {
-               // getToast("unable to start maps");
-            }
+        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+    }
+    private void mapFiller(){
+
+        for ( int pos =0; pos<cityNumbers.length; pos++) {
+            spAllCities.getSpanishRestaurants(getCityNumber(pos), new Callback<SpanishRestaurantModel>() {
+                @Override
+                public void success(SpanishRestaurantModel spanishRestaurantModel, Response response) {
+                    List<Restaurant> restaurantsList = spanishRestaurantModel.getRestaurants();
+                    for (int i = 0; i < restaurantsList.size(); i++) {
+                        double lat = Double.parseDouble(restaurantsList.get(i).getRestaurant().getLocation().getLatitude());
+                        double lng = Double.parseDouble(restaurantsList.get(i).getRestaurant().getLocation().getLongitude());
+                        final LatLng place = new LatLng(lat, lng);
+                        MarkerOptions placeMarker = new MarkerOptions()
+                                .position(place)
+                                .title(restaurantsList.get(i).getRestaurant().getName())
+                                .snippet("Address: " + restaurantsList.get(i).getRestaurant().getLocation().getAddress());
+                        mMap.addMarker(placeMarker);
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(place, 12.5f));
+                    }
+                }
+
+                @Override
+                public void failure(RetrofitError error) {
+                    getToast("Error charging maps");
+                }
+            });
         }
+
+
     }
 
     public void onBackPressed(){
@@ -166,28 +173,20 @@ public class FragmentMaps extends Fragment implements OnMapReadyCallback, Adapte
         }
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        Log.i("MAIN", "spinner " + position);
-        itemSpinner = parent.getItemAtPosition(position).toString();
-       // getToast(itemSpinner);
-        if( position==1) {
-            this.cityNumber=68;
-        } else if( position==2 ){
-            this.cityNumber =295;
-        } else if ( position==3 ){
-            this.cityNumber =283;
-        }else {
-            this.cityNumber =61;
-        }
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-        getToast("Select an item");
-    }
+//    @Override
+//    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//        Log.i("MAIN", "spinner " + position);
+//        itemSpinner = parent.getItemAtPosition(position).toString();
+//       // getToast(itemSpinner);
+//        pos=position;
+//    }
+//
+//    @Override
+//    public void onNothingSelected(AdapterView<?> parent) {
+//        getToast("Select an item");
+//    }
     //methods
-    public int getCityNumber(){
-        return this.cityNumber;
+    public int getCityNumber(int pos){
+        return this.cityNumbers[pos];
     }
 }

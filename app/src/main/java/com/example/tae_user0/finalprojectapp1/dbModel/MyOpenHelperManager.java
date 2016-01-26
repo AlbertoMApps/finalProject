@@ -23,7 +23,7 @@ public class MyOpenHelperManager implements Parcelable{
     private DBHelper mDBHelper;
     private User  user;
     private Favourites favourites;
-    private ArrayList favList;
+    //private ArrayList favList;
 
     public MyOpenHelperManager(Context context) {
         this.context = context;
@@ -64,6 +64,16 @@ public class MyOpenHelperManager implements Parcelable{
             Log.e("TAG", "Error creating an user");
         }
     }
+    // getting users
+    public List getUsers(){
+        try{
+            Dao dao = getHelper().getUserDao();
+            return dao.queryForAll();
+        } catch (SQLException e){
+            Log.e("TAG", "Error creating user");
+        }
+        return null;
+    }
 // saveFavourites
     public void saveFavourites(String restName,String street){
         try {
@@ -89,9 +99,9 @@ public class MyOpenHelperManager implements Parcelable{
 //            }
             return dao.queryForAll();
         } catch (SQLException e){
-            Log.e("TAG", "Error creating user");
+            Log.e("TAG", "Error creating favourites");
         }
-    return favList;
+    return null;
     }
  //get the user for the app
     public void getUser(){

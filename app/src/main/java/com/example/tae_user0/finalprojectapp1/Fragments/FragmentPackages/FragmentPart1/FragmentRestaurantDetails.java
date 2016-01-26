@@ -40,7 +40,7 @@ public class FragmentRestaurantDetails extends Fragment {
     private static FragmentRestaurantDetails fr;
     private RestAdapter restAdapt;
     private RestaurantDetailsApi spRest;
-    private String restName, cityName, restAddress;
+    private String restName, cityName, restAddress, txtP;
     private CallbackManager callbackManager;
     private ShareDialog shareDialog;
     private Favourites favourites;
@@ -94,10 +94,11 @@ public class FragmentRestaurantDetails extends Fragment {
                     restName = spModel.getRestaurants().get(pos).getRestaurant().getName();
                     cityName = spModel.getRestaurants().get(pos).getRestaurant().getLocation().getCity();
                     restAddress = spModel.getRestaurants().get(pos).getRestaurant().getLocation().getAddress();
-                    txtTitle.setText("Restaurant name: "+restName);
-                    txtAddress.setText("Restaurant address: " + restAddress);
-                    txtCity.setText("Restaurant city: " + cityName);
-                    txtPrice.setText("Price range: "+  spModel.getRestaurants().get(pos).getRestaurant().getPriceRange());
+                    txtP = spModel.getRestaurants().get(pos).getRestaurant().getPriceRange().toString();
+                    txtTitle.setText(restName);
+                    txtAddress.setText(restAddress);
+                    txtCity.setText(cityName);
+                    txtPrice.setText(txtP);
 
                     // Instantiate a ViewPager and a PagerAdapter.
                     ViewPager mPager = (ViewPager)rootView.findViewById(R.id.pager);

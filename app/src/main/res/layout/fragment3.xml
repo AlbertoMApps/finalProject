@@ -8,15 +8,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/txtRestDetails"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textColor="#000000"
-            android:text="@string/detailsLabel"
-            android:layout_margin="10dp"
+            android:id="@+id/txtLabelTop"
+            android:background="@drawable/fondo_fragments"
+            >
+            <TextView
+                android:id="@+id/txtRestDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:background="@color/bt_very_light_gray"
+                android:text="@string/detailsLabel"
+                android:layout_margin="20dp"
+                android:layout_alignParentTop="true"
+                android:textAlignment="center"
+                android:gravity="center"
             />
+        </LinearLayout>
 
         <android.support.v4.view.ViewPager
             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -24,54 +35,97 @@
             android:layout_width="350dp"
             android:layout_height="100dp"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/txtRestDetails"
+            android:layout_below="@+id/txtLabelTop"
+            />
+
+        <TextView
+            android:id="@+id/labelRestName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:text="@string/labelRestName"
+            android:layout_margin="10dp"
+            android:layout_below="@id/pager"
             />
 
         <TextView
             android:id="@+id/txtRestName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textColor="#000000"
             android:text="Fill me"
             android:layout_margin="10dp"
-            android:layout_below="@id/pager"
+            android:layout_below="@id/labelRestName"
+            />
+        <TextView
+            android:id="@+id/labelTxtAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:text="@string/labelAddress"
+            android:layout_margin="10dp"
+            android:layout_below="@id/txtRestName"
             />
         <TextView
             android:id="@+id/txtAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
+            android:textSize="14sp"
             android:textColor="#000000"
             android:text="Fill me"
             android:layout_margin="10dp"
-            android:layout_below="@id/txtRestName"
+            android:layout_below="@id/labelTxtAddress"
+            />
+        <TextView
+            android:id="@+id/labelTxtCity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:text="@string/labelCity"
+            android:layout_margin="10dp"
+            android:layout_below="@id/txtAddress"
             />
         <TextView
             android:id="@+id/txtCity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
+            android:textSize="14sp"
             android:textColor="#000000"
             android:text="Fill me"
             android:layout_margin="10dp"
             android:layout_below="@id/txtAddress"
+            android:layout_toRightOf="@+id/labelTxtCity"
+            />
+        <TextView
+            android:id="@+id/labelTxtPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:text="@string/labelPrice"
+            android:layout_margin="10dp"
+            android:layout_below="@id/txtCity"
             />
         <TextView
             android:id="@+id/txtPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
+            android:textSize="14sp"
             android:textColor="#000000"
             android:text="Fill me"
             android:layout_margin="10dp"
             android:layout_below="@id/txtCity"
+            android:layout_toRightOf="@+id/labelTxtPrice"
             />
         <Button
             android:id="@+id/btnFb"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Add to Facebook"
+            android:text="@string/btnFacebook"
             android:layout_below="@id/txtPrice"
             android:background="@color/primary_dark"
             android:textColor="#fff"
@@ -81,7 +135,7 @@
             android:id="@+id/btnAdd"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Add to Favourites"
+            android:text="@string/btnFauvorites"
             android:layout_below="@id/btnFb"
             android:background="@color/primary_dark"
             android:textColor="#fff"

@@ -9,13 +9,30 @@
     <string name="facebook_app_id">54691734332</string>
     <string name="action_wishlist">whislist</string>
     <string name="hintCity">Type a city</string>
-    <string name="searchLabel">Get restaurant details of a city </string>
+    <string name="searchLabel">Type your city </string>
     <string name="detailsLabel">Restaurant details</string>
     <string name="restaurantsLabel">Restaurants results by city</string>
-    <string name="user">user</string>
-    <string name="email">email</string>
-    <string name="search">search by city</string>
-    <string name="maps">Find maps in these cities:</string>
+    <string name="user">User</string>
+    <string name="email">Email</string>
+    <string name="search">Search by city</string>
+    <string name="maps">Find restaurant places for some cities:</string>
+    <string name="donate">DONATE</string>
+    <string name="login">LOGIN</string>
+    <string name="btnSearch">SEARCH</string>
+    <string name="btnFacebook">ADD ON FACEBOOK</string>
+    <string name="btnFauvorites">ADD TO FAVOURITES</string>
+    <string name="labelVersion">VERSION APP v.1.0, NEW VERSIONS WILL COME SOON!</string>
+    <string name="find">Find near you</string>
+    <string name="about">About</string>
+    <string name="share">Share</string>
+    <string name="send">Send</string>
+    <string name="labelRestName">Restaurant name:</string>
+    <string name="labelAddress">Address:</string>
+    <string name="labelCity">City:</string>
+    <string name="labelPrice">Price range:</string>
+    <string name="reg">REGISTER</string>
+    <string name="logOff">Log Off</string>
+    <string name="loginDetails">USER FORM</string>
     <string-array name="citiesMaps">
         <item>London</item><!--61-->
         <item>Manchester</item><!--68-->

@@ -1,13 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textLoginDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        android:text="@string/loginDetails"
+        android:layout_margin="20dp"
+        android:layout_alignParentTop="true"
+        android:textAlignment="center"
+        android:gravity="center"
+        />
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/input_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/textLoginDetails"
         >
         <EditText android:id="@+id/txtName"
             android:layout_width="match_parent"
@@ -15,6 +29,7 @@
             android:drawableLeft="@android:drawable/ic_menu_edit"
             android:hint="@string/user"
             android:textColorHint="#CFCFCF"
+            android:layout_margin="5dp"
             android:inputType="text" />
 
     </android.support.design.widget.TextInputLayout>
@@ -30,15 +45,39 @@
             android:drawableLeft="@android:drawable/ic_dialog_email"
             android:hint="@string/email"
             android:textColorHint="#CFCFCF"
+            android:layout_margin="5dp"
             android:inputType="text" />
     </android.support.design.widget.TextInputLayout>
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btnLogin"
         android:layout_below="@+id/input_email"
-        android:text="Login"
+        android:text="@string/login"
+        android:layout_margin="20dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
+        android:padding="12dp"
+    />
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnReg"
+        android:layout_below="@+id/btnLogin"
+        android:layout_toRightOf="@+id/btnDonation"
+        android:text="@string/reg"
+        android:layout_margin="20dp"
+        android:background="@color/primary_light"
+        />
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnDonation"
+        android:layout_below="@+id/btnLogin"
+        android:text="@string/donate"
+        android:layout_margin="20dp"
+        android:background="@color/bt_blue_pressed"
         />
 
 
-</LinearLayout>
+</RelativeLayout>
