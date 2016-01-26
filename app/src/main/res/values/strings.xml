@@ -15,4 +15,11 @@
     <string name="user">user</string>
     <string name="email">email</string>
     <string name="search">search by city</string>
+    <string name="maps">Find maps in these cities:</string>
+    <string-array name="citiesMaps">
+        <item>London</item><!--61-->
+        <item>Manchester</item><!--68-->
+        <item>Ottawa</item><!--295-->
+        <item>Washington</item><!--283-->
+    </string-array>
 </resources>
