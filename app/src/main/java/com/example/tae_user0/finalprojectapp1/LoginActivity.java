@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.tae_user0.finalprojectapp1.dbModel.MyOpenHelperManager;
 import com.example.tae_user0.finalprojectapp1.dbModel.User;
+import com.example.tae_user0.finalprojectapp1.push_notification.GcmRegistrationAsyncTask;
 import com.paypal.android.sdk.payments.PayPalConfiguration;
 import com.paypal.android.sdk.payments.PayPalPayment;
 import com.paypal.android.sdk.payments.PayPalService;

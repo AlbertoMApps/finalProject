@@ -1,6 +1,7 @@
 package com.example.tae_user0.finalprojectapp1.Fragments.FragmentPackages.FragmentPart1;
 
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -37,6 +38,7 @@ public class FragmentRestaurants extends Fragment implements ItemClickListenerRe
     private RestaurantsAdapter mAdapter;
     private ItemClickListenerRestModel clickListener;
     private SpanishRestaurantModel spModel;
+    ProgressDialog progressDialog;
     
     public FragmentRestaurants(){}
     public static FragmentRestaurants newInstance(Bundle args){
@@ -63,8 +65,10 @@ public class FragmentRestaurants extends Fragment implements ItemClickListenerRe
                 .setLogLevel(RestAdapter.LogLevel.FULL)
                 .build();
         int id= fr.getArguments().getInt("cityId");
+        progressDialog = new ProgressDialog(getContext(), R.style.AppTheme);
         //Example first query
         if(id!=0) {
+            progressDialog.show();
             spRest = restAdapt.create(RestaurantsApi.class);
             spRest.getSpanishRestaurants(id, new Callback<SpanishRestaurantModel>() {
 
@@ -72,6 +76,7 @@ public class FragmentRestaurants extends Fragment implements ItemClickListenerRe
                 public void success(SpanishRestaurantModel spanishRestaurantModel, Response response) {
                     recyclerModel2(spanishRestaurantModel);
                     spModel = spanishRestaurantModel;
+                    progressDialog.dismiss();
                     //getToast("votes"+spanishRestaurantModel.getRestaurants().get(0).getRestaurant().getUserRating().getVotes());
 //                    for (int i = 0; i < spanishRestaurantModel.getRestaurants().size(); i++) {
 //                        Log.i("locations by id", "" + spanishRestaurantModel.getRestaurants().get(i).getRestaurant().getName());
@@ -82,11 +87,14 @@ public class FragmentRestaurants extends Fragment implements ItemClickListenerRe
                 @Override
                 public void failure(RetrofitError error) {
                     getToast("failure charging the data");
+                    progressDialog.dismiss();
                 }
             });
         } else{
             getToast("No restaurants found on this location");
+            progressDialog.dismiss();
         }
+
         return view;
     }
 

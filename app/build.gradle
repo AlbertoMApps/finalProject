@@ -30,6 +30,11 @@ android {
         // Enabling multidex support.
         multiDexEnabled true
     }
+    dexOptions {
+        incremental true
+        javaMaxHeapSize "2048M"
+        jumboMode = true
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -41,6 +46,10 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
+    compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') {
+        transitive = true;
+    }
+    compile project(path: ':backend', configuration: 'android-endpoints')
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
     compile 'com.squareup.retrofit:retrofit:1.9.0'
@@ -53,13 +62,15 @@ dependencies {
     compile 'com.braintreepayments.api:braintree:2.+'
     compile 'com.braintreepayments.api:drop-in:2.+'
     compile 'com.loopj.android:android-async-http:1.4.9'
-    compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') {
-        transitive = true;
-    }
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.facebook.android:facebook-android-sdk:4.+'
     compile 'com.j256.ormlite:ormlite-android:4.48'
     compile 'com.android.support:multidex:1.0.0'
     compile 'com.google.android.gms:play-services-maps:8.4.0'
     compile 'com.paypal.sdk:paypal-android-sdk:2.13.0'
+    compile 'com.google.android.gms:play-services:8.4.0'
+    compile 'com.google.android.gms:play-services-gcm:8.4.0'
+    compile 'com.google.android.gms:play-services-ads:8.4.0'
+    compile 'com.google.android.gms:play-services-analytics:8.4.0'
+    compile 'com.google.android.gms:play-services-identity:8.4.0'
 }

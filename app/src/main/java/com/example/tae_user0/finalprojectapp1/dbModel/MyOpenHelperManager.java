@@ -58,7 +58,6 @@ public class MyOpenHelperManager implements Parcelable{
             //User user = new User();
             user.setName(user.getName());
             user.setEmail(user.getEmail());
-
             dao.create(user);
         } catch (SQLException e) {
             Log.e("TAG", "Error creating an user");
@@ -102,6 +101,15 @@ public class MyOpenHelperManager implements Parcelable{
             Log.e("TAG", "Error creating favourites");
         }
     return null;
+    }
+//delete favourites
+    public void deleteFavourites(Favourites favourite){
+        try{
+            Dao dao = getHelper().getDaoFav();
+            dao.delete(favourite);
+        } catch (SQLException e){
+            Log.e("TAG", "Error deleting the favourite");
+        }
     }
  //get the user for the app
     public void getUser(){

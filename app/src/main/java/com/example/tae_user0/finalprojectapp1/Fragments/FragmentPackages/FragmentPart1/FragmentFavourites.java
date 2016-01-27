@@ -8,6 +8,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +30,7 @@ public class FragmentFavourites extends Fragment implements ItemClickListenerMan
     private static FragmentFavourites ff;
     private MyOpenHelperManager mom;
     private SwipeRefreshLayout swipeRefreshLayout;
+    ItemTouchHelper swipeToDismissTouchHelper;
 
     public FragmentFavourites(){
     }
@@ -59,6 +61,9 @@ public class FragmentFavourites extends Fragment implements ItemClickListenerMan
         //arguments to send to the openHelpManager
         mom = ff.getArguments().getParcelable("MyOpenHelperManager");
         recyclerModel1(mom, rootView);
+        //itemTouchSimpleCallback
+        setItemTouchSimpleCallback();
+        swipeToDismissTouchHelper.attachToRecyclerView(mRecycler);
         return rootView;
     }
 
@@ -96,5 +101,26 @@ public class FragmentFavourites extends Fragment implements ItemClickListenerMan
         }
 
     }
+//touch view
+    private void setItemTouchSimpleCallback() {
+        // init swipe to dismiss logic
+         swipeToDismissTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(
+                ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                // callback for drag-n-drop, false to skip this feature
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                // callback for swipe to dismiss, removing item from data and adapter
+                mAdapter.removeFavourite(viewHolder.getAdapterPosition());
+                mAdapter.notifyItemRemoved(viewHolder.getAdapterPosition());
+            }
+        });
+    }
+
+
 
 }

@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.tae_user0.finalprojectapp1.Constants.Constant;
@@ -24,6 +25,10 @@ public class FragmentAbout extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_about, container, false);
         TextView about = (TextView) container.findViewById(R.id.about);
+        //set the imageView for the main content invisible in any of the other fragments
+        ImageView im = (ImageView)getActivity().findViewById(R.id.imgLogo);
+        im.setVisibility(View.INVISIBLE);
+        im.getLayoutParams().height = 0;
         return v;
     }
 }

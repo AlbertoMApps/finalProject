@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * Created by TAE_user0 on 22/01/2016.
  */
-public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.ViewHolder> {
+public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.ViewHolder>{
     private MyOpenHelperManager model;
     private int rowLayout;
     private Context mContext;
@@ -52,10 +52,17 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.View
         return this.model == null ? 0 : model.getFavourites().size();
     }
 
+
+
     //Methods
 //    public ArrayList getList() {
 //        return this.model;
 //    }
+
+    public void removeFavourite(int adapterPosition) {
+        Favourites fav = (Favourites) model.getFavourites().get(adapterPosition);
+        model.deleteFavourites(fav);
+    }
 
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

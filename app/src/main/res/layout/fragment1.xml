@@ -4,26 +4,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-        <LinearLayout
+        <android.support.v7.widget.LinearLayoutCompat
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/txtLabelTop"
             android:background="@drawable/fondo_fragments"
-            >
+            android:alpha=".25"/>
             <TextView
                 android:id="@+id/txtLabel"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textColor="#000000"
-                android:background="@color/bt_very_light_gray"
+                android:textSize="35sp"
+                android:textColor="#fa0400"
                 android:text="@string/searchLabel"
                 android:layout_margin="20dp"
                 android:layout_alignParentTop="true"
                 android:textAlignment="center"
                 android:gravity="center"
                 />
-        </LinearLayout>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/input_layout_last"

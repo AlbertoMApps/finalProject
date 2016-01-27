@@ -70,6 +70,7 @@ public class FragmentSearch extends Fragment implements View.OnClickListener, It
                 .build();
         //city Click
         cityClick = FragmentSearch.this;
+        progressDialog = new ProgressDialog(getContext(), R.style.AppTheme);
         return view;
     }
     //Secondly, we click on btn Search
@@ -77,6 +78,7 @@ public class FragmentSearch extends Fragment implements View.OnClickListener, It
     public void onClick(final View v) {
         //Toast.makeText(getContext(), searchText.getText().toString(),Toast.LENGTH_SHORT).show();
         //restAdapter for cities API1//// //
+        progressDialog.show();
         String q= searchText.getText().toString();
         spCities = restAdapt.create(CitiesApi.class);
         if(!q.isEmpty()) {
@@ -84,7 +86,7 @@ public class FragmentSearch extends Fragment implements View.OnClickListener, It
             spCities.getCities(q, new Callback<CitiesModel>() {
                 @Override
                 public void success(CitiesModel citiesModel, Response response) {
-                    dismissProgressDialog();
+                    progressDialog.dismiss();
                     recyclerModel1(citiesModel);
 //                    for (int i = 0; i < citiesModel.getLocationSuggestions().size(); i++) {
 //                        Log.i("locations by id", ""+citiesModel.getLocationSuggestions().get(i).getId());
@@ -94,10 +96,12 @@ public class FragmentSearch extends Fragment implements View.OnClickListener, It
 
                 @Override
                 public void failure(RetrofitError error) {
+                    progressDialog.dismiss();
                 }
             });
         } else{
             Toast.makeText(getContext(), "Please enter a valid value", Toast.LENGTH_SHORT).show();
+            progressDialog.dismiss();
 
         }
 
@@ -124,7 +128,6 @@ public class FragmentSearch extends Fragment implements View.OnClickListener, It
         //loading();
         FragmentRestaurants fRest = FragmentRestaurants.newInstance(arguments);
         android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        dismissProgressDialog();
         fragmentTransaction.replace(R.id.main_fragment, fRest, "fragment2");
         fragmentTransaction.commit();
     }
@@ -132,18 +135,5 @@ public class FragmentSearch extends Fragment implements View.OnClickListener, It
     public void onDestroyView () {
         super.onDestroyView();
         Log.v("LOG", "onDestroyView");
-    }
-
-    ///progress bar dialog
-    public void loading (){
-        progressDialog = new ProgressDialog(getContext(), R.style.AppTheme);
-        progressDialog.setIndeterminate(false);
-        progressDialog.setCancelable(true);
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
-    }
-    public void dismissProgressDialog(){
-        progressDialog = new ProgressDialog(getContext(), R.style.AppTheme);
-        progressDialog.dismiss();
     }
 }

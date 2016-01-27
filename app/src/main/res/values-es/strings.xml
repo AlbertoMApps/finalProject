@@ -30,4 +30,5 @@
     <string name="login">ENTRA</string>
     <string name="logOff">Salir de sesion</string>
     <string name="loginDetails">FORMULARIO DE USUARIO</string>
+    <string name="labelRate">Votos de usuarios:</string>
 </resources>

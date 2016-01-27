@@ -23,6 +23,7 @@ import com.example.tae_user0.finalprojectapp1.Fragments.FragmentPackages.Fragmen
 import com.example.tae_user0.finalprojectapp1.Fragments.FragmentPackages.FragmentPart3.FragmentAbout;
 import com.example.tae_user0.finalprojectapp1.Service.SaveDataService;
 import com.example.tae_user0.finalprojectapp1.dbModel.User;
+import com.example.tae_user0.finalprojectapp1.push_notification.GcmRegistrationAsyncTask;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
@@ -47,6 +48,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//Analytics trackers
+        //AnalyticsTrackers.initialize(getApplicationContext());
+//////gcm registration async task
+        GcmRegistrationAsyncTask gcm = new GcmRegistrationAsyncTask(this);
+        gcm.execute();
+
 //Facebook sdk integration
         FacebookSdk.sdkInitialize(getApplicationContext());
         getUserInfo();
@@ -241,20 +248,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             shareDialog.show(linkContent);
         }
-    }
-
-    ///progress bar dialog
-    public void loading (){
-        final ProgressDialog progressDialog;
-        progressDialog = new ProgressDialog(MainActivity.this, R.style.AppTheme);
-        progressDialog.setIndeterminate(false);
-        progressDialog.setCancelable(true);
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
-    }
-    public void dismissProgressDialog(){
-        final ProgressDialog progressDialog;
-        progressDialog = new ProgressDialog(MainActivity.this, R.style.AppTheme);
-        progressDialog.dismiss();
     }
 }

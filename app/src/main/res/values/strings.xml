@@ -33,6 +33,7 @@
     <string name="reg">REGISTER</string>
     <string name="logOff">Log Off</string>
     <string name="loginDetails">USER FORM</string>
+    <string name="labelRate">Users rate:</string>
     <string-array name="citiesMaps">
         <item>London</item><!--61-->
         <item>Manchester</item><!--68-->

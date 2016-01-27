@@ -8,26 +8,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtLabelTop"
-            android:background="@drawable/fondo_fragments"
-            >
-            <TextView
-                android:id="@+id/txtRestDetails"
-                android:layout_width="wrap_content"
+            <android.support.v7.widget.LinearLayoutCompat
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:textColor="#000000"
-                android:background="@color/bt_very_light_gray"
-                android:text="@string/detailsLabel"
-                android:layout_margin="20dp"
-                android:layout_alignParentTop="true"
-                android:textAlignment="center"
-                android:gravity="center"
-            />
-        </LinearLayout>
+                android:id="@+id/txtLabelTop"
+                android:background="@drawable/fondo_fragments"
+                android:alpha=".25"/>
+                >
+                <TextView
+                    android:id="@+id/txtRestDetails"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="35sp"
+                    android:textColor="#fa0400"
+                    android:text="@string/detailsLabel"
+                    android:layout_margin="20dp"
+                    android:layout_alignParentTop="true"
+                    android:textAlignment="center"
+                    android:gravity="center"
+                />
+
 
         <android.support.v4.view.ViewPager
             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -35,7 +35,7 @@
             android:layout_width="350dp"
             android:layout_height="100dp"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/txtLabelTop"
+            android:layout_below="@+id/txtRestDetails"
             />
 
         <TextView
@@ -101,17 +101,17 @@
             android:layout_toRightOf="@+id/labelTxtCity"
             />
         <TextView
-            android:id="@+id/labelTxtPrice"
+            android:id="@+id/labelTxtRate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:textColor="#000000"
-            android:text="@string/labelPrice"
+            android:text="@string/labelRate"
             android:layout_margin="10dp"
             android:layout_below="@id/txtCity"
             />
         <TextView
-            android:id="@+id/txtPrice"
+            android:id="@+id/txtRate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"
@@ -119,14 +119,14 @@
             android:text="Fill me"
             android:layout_margin="10dp"
             android:layout_below="@id/txtCity"
-            android:layout_toRightOf="@+id/labelTxtPrice"
+            android:layout_toRightOf="@+id/labelTxtRate"
             />
         <Button
             android:id="@+id/btnFb"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/btnFacebook"
-            android:layout_below="@id/txtPrice"
+            android:layout_below="@id/txtRate"
             android:background="@color/primary_dark"
             android:textColor="#fff"
             android:layout_margin="10dp"

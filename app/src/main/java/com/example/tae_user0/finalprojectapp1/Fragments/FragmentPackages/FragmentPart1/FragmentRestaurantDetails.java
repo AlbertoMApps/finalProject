@@ -89,12 +89,12 @@ public class FragmentRestaurantDetails extends Fragment {
                     TextView txtTitle = (TextView) rootView.findViewById(R.id.txtRestName);
                     TextView txtAddress = (TextView) rootView.findViewById(R.id.txtAddress);
                     TextView txtCity = (TextView) rootView.findViewById(R.id.txtCity);
-                    TextView txtPrice = (TextView) rootView.findViewById(R.id.txtPrice);
+                    TextView txtPrice = (TextView) rootView.findViewById(R.id.txtRate);
                     //setTexts
                     restName = spModel.getRestaurants().get(pos).getRestaurant().getName();
                     cityName = spModel.getRestaurants().get(pos).getRestaurant().getLocation().getCity();
                     restAddress = spModel.getRestaurants().get(pos).getRestaurant().getLocation().getAddress();
-                    txtP = spModel.getRestaurants().get(pos).getRestaurant().getPriceRange().toString();
+                    txtP = spModel.getRestaurants().get(pos).getRestaurant().getUserRating().getAggregateRating();
                     txtTitle.setText(restName);
                     txtAddress.setText(restAddress);
                     txtCity.setText(cityName);
@@ -109,7 +109,7 @@ public class FragmentRestaurantDetails extends Fragment {
 
                 @Override
                 public void failure(RetrofitError error) {
-                    getToast("Error chargin restaurants");
+                    getToast("Error charging restaurants");
                 }
             });
 
@@ -181,7 +181,7 @@ public class FragmentRestaurantDetails extends Fragment {
     //btn add for the favourites
     @OnClick(R.id.btnAdd) void btnAddFavourites(){
         //add to favourites into the database and send the information into fragmentFavourites to display
-        getToast("db");
+        //getToast("db");
         MyOpenHelperManager mom = new MyOpenHelperManager(getContext());
         //favourites = new Favourites();
         mom.saveFavourites(getRestNameSelected(), getRestAddress());
